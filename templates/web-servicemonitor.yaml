@@ -21,4 +21,8 @@ spec:
   selector:
     matchLabels:
       app: {{ template "concourse.web.fullname" . }}
+{{- if .Values.concourse.web.prometheus.serviceMonitor.metricRelabelings }}
+    metricRelabelings:
+{{ toYaml .Values.concourse.web.prometheus.serviceMonitor.metricRelabelings | indent 4 }}
+{{- end }}
 {{- end }}
